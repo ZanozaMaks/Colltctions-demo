@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    private static final int MAX_SIZE = 2;
+    private static final int MAX_SIZE = 5;
     private final List<Employee> employees = new ArrayList<>();
 
     public Employee add(String firstName, String lastName) {
