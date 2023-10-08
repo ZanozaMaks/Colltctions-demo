@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 import service.EmployeeService;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -33,13 +34,13 @@ public class EmployeeController {
 		return employeeService.remove(firstName, lastName);
 	}
 
-	@GetMapping("/find")
+	@GetMapping("/get")
 	public Employee find(@RequestParam String firstName, @RequestParam String lastName) {
 		return employeeService.get(firstName, lastName);
 	}
 
 	@GetMapping
-	public List<Employee> getAll() {
+	public Collection<Employee> getAll() {
 		return employeeService.getAll();
 	}
 }
