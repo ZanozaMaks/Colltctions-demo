@@ -1,15 +1,10 @@
 package com.example.Colltctionsdemo;
 
 import model.Employee;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.DepartmentService;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/departments")
@@ -31,13 +26,13 @@ public class DepartmentController {
         return departmentService.getEmployeeWithMinSalary(departmentId);
     }
 
-    @GetMapping(value = "/all", params = {"departmentId"})
+  /* @GetMapping(value = "/all", params = {"departmentId"})
     public Collection<Employee> getEmployees(@RequestParam Integer departmentId) {
         return departmentService.getEmployee(departmentId);
     }
-
+/*/
     @GetMapping("/all")
-    public Map<Integer, List<Employee>> getEmployees() {
-        return departmentService.getEmployee();
+    public Collection<Employee> getEmployeesByDepartment(@RequestParam(required = false) Integer departmentId) {
+        return departmentService.getEmployee(departmentId);
     }
 }
