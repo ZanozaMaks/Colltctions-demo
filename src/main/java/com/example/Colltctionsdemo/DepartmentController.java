@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import service.DepartmentService;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/departments")
@@ -26,13 +28,13 @@ public class DepartmentController {
         return departmentService.getEmployeeWithMinSalary(departmentId);
     }
 
-  /* @GetMapping(value = "/all", params = {"departmentId"})
-    public Collection<Employee> getEmployees(@RequestParam Integer departmentId) {
+    @GetMapping(value = "/all", params = {"departmentId"})
+    public Collection<Employee> getEmployee(@RequestParam Integer departmentId){
         return departmentService.getEmployee(departmentId);
     }
-/*/
+
     @GetMapping("/all")
-    public Collection<Employee> getEmployeesByDepartment(@RequestParam(required = false) Integer departmentId) {
-        return departmentService.getEmployee(departmentId);
+    public Map<Integer, List<Employee>> getEmployee(){
+        return departmentService.getEmployee();
     }
 }
