@@ -1,5 +1,8 @@
 package SetsAndMaps;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class SetsAndMaps {
@@ -11,7 +14,6 @@ public class SetsAndMaps {
 
         List<String> strings = new ArrayList<>(List.of("Hello","hello","HelLo","Sea","Blue","Yellow","Wall", "daNCe"));
         task3(strings);
-
     }
 
     public static void task1(List <Integer> nums) {
