@@ -1,5 +1,4 @@
 package service;
-import com.example.Colltctionsdemo.EmployeeController;
 import exception.EmployeeAlreadyAddedException;
 import exception.EmployeeNotFoundException;
 import exception.EmployeeStorageIsFullException;
@@ -17,7 +16,7 @@ public class EmployeeService {
     private static final int MAX_SIZE = 5;
     private final Map<String,Employee> employees = new HashMap<>();
 
-    public Employee add(String firstName, String lastName) {
+    public Employee add(String firstName, String lastName, double salary, int departmentId) {
 
         firstName = StringUtils.capitalize(firstName);
 
@@ -37,7 +36,7 @@ public class EmployeeService {
 
         }
 
-        Employee newEmployee = new Employee(firstName, lastName);
+        Employee newEmployee = new Employee(firstName, lastName, salary, departmentId);
 
         employees.put(key,newEmployee);
 
