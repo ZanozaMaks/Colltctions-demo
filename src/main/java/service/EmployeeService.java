@@ -43,7 +43,7 @@ public class EmployeeService {
         return newEmployee;
     }
 
-    public Employee remove(String firstName, String lastName) {
+    public Employee remove(String firstName, String lastName, double salary, int departmentId) {
 
         firstName = StringUtils.capitalize(firstName);
 
@@ -62,7 +62,7 @@ public class EmployeeService {
     }
 
 
-    public Employee get(String firstName, String lastName) {
+    public Employee get(String firstName, String lastName, double salary, int departmentId) {
 
         firstName = StringUtils.capitalize(firstName);
 
