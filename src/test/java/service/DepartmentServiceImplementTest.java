@@ -97,7 +97,7 @@ class DepartmentServiceImplementTest {
         expectedMap.put(DEPARTMENT_ID, Arrays.asList(getEmployee(),getEmployee_1()));
 
         //начало теста
-        Map<Integer, List<Employee>> actualMap = (Map<Integer, List<Employee>>) departmentServiceImplement.getEmployee(departmentId);
+        Map<Integer, List<Employee>> actualMap = departmentServiceImplement.getEmployee(departmentId);
         assertEquals(expectedMap, actualMap);
 
 
@@ -117,8 +117,8 @@ class DepartmentServiceImplementTest {
         expectedMap.put(DEPARTMENT_ID, Collections.singletonList(getEmployee_2()));
 
         //начало теста
-        Map<Integer, List<Employee>> actualMap = (Map<Integer, List<Employee>>) departmentServiceImplement.getEmployee(departmentId);
+        Map<Integer, List<Employee>> actualMap = (Map<Integer, List<Employee>>) departmentServiceImplement.getEmployee();
         assertEquals(expectedMap, actualMap);
-        
+
     }
 }

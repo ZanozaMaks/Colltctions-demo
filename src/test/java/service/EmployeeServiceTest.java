@@ -1,6 +1,7 @@
 package service;
 
 import exception.EmployeeAlreadyAddedException;
+import exception.EmployeeNotFoundException;
 import exception.EmployeeStorageIsFullException;
 import model.Employee;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ class EmployeeServiceTest {
         int departmentId = DEPARTMENT_ID;
         //Подготовка ожидаемого результата
         Employee expectedEmployee = getEmployee();
+        employeeService.add(firstName, lastName, salary, departmentId);
         //Начало теста
         Employee actualEmployee = employeeService.add(firstName, lastName, salary, departmentId);
         assertEquals(expectedEmployee, actualEmployee);
@@ -56,7 +58,7 @@ class EmployeeServiceTest {
         int departmentId_4 = DEPARTMENT_ID_4;
 
         //Подготовка ожидаемого результата
-        String expectedMessage = "Массив сотрудников переополнен.";
+        String expectedMessage = "Массив сотрудников переполнен.";
 
         // Начало теста
         employeeService.add(firstName, lastName, salary, departmentId);
@@ -64,8 +66,10 @@ class EmployeeServiceTest {
         employeeService.add(firstName_2, lastName_2, salary_2, departmentId_2);
         employeeService.add(firstName_3, lastName_3, salary_3, departmentId_3);
         employeeService.add(firstName_4, lastName_4, salary_4, departmentId_4);
-        Exception exception = assertThrows(EmployeeStorageIsFullException.class, () -> employeeService.add(firstName, lastName, salary, departmentId));
+        assertThrows(EmployeeNotFoundException.class, () -> employeeService.get(firstName, lastName, salary, departmentId));
         assertEquals(expectedMessage, expectedMessage);
+
+
     }
 
     @Test
@@ -82,7 +86,9 @@ class EmployeeServiceTest {
         //Начало теста
         employeeService.add(firstName, lastName, salary, departmentId);
         Exception exception = assertThrows(EmployeeAlreadyAddedException.class, () -> employeeService.add(firstName, lastName, salary, departmentId));
+        assertThrows(EmployeeNotFoundException.class, () -> employeeService.get(firstName, lastName, salary, departmentId));
         assertEquals(expectedMessage, expectedMessage);
+
 
     }
 
@@ -97,7 +103,7 @@ class EmployeeServiceTest {
 
         //Подготовка ожидаемого результата
         Employee expectedEmployee = new Employee(firstName, lastName, salary, departmentId);
-
+        employeeService.add(firstName, lastName, salary, departmentId);
         //Начало теста
         Employee actualEmployee = employeeService.remove(firstName, lastName, salary, departmentId);
         assertEquals(expectedEmployee, actualEmployee);
@@ -117,7 +123,9 @@ class EmployeeServiceTest {
 
         //начало теста
         Employee actualEmployee = employeeService.remove(firstName, lastName, salary, departmentId);
+        assertThrows(EmployeeNotFoundException.class, () -> employeeService.get(firstName, lastName, salary, departmentId));
         assertEquals(expectedEmployee, actualEmployee);
+
 
     }
 
@@ -131,9 +139,9 @@ class EmployeeServiceTest {
 
         //Подготовка ожидаемого результата
         Employee expectedEmployee = new Employee(firstName, lastName, salary, departmentId);
+        employeeService.add(firstName, lastName, salary, departmentId);
 
         //Начало теста
-        employeeService.get(firstName, lastName, salary, departmentId);
         Employee actualEmployee = employeeService.get(firstName, lastName, salary, departmentId);
         assertEquals(expectedEmployee, actualEmployee);
     }
@@ -152,7 +160,9 @@ class EmployeeServiceTest {
         //Начало теста
         employeeService.get(firstName, lastName, salary, departmentId);
         Employee actualEmployee = employeeService.get(firstName, lastName, salary, departmentId);
+        assertThrows(EmployeeNotFoundException.class, () -> employeeService.get(firstName, lastName, salary, departmentId));
         assertEquals(expectedEmployee, actualEmployee);
+
     }
 
     @Test
@@ -186,9 +196,11 @@ class EmployeeServiceTest {
 
         //подготовка ожидаемого результата
         Employee expectedEmployee = new Employee(firstName, lastName, salary, departmentId);
+        employeeService.add(firstName, lastName, salary, departmentId);
 
         //начало теста
         Employee actualEmployee = employeeService.get(firstName, lastName, salary, departmentId);
+
 
         employeeService.add(firstName, lastName, salary, departmentId);
         employeeService.add(firstName_1, lastName_1, salary_1, departmentId_1);
