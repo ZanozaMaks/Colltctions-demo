@@ -1,7 +1,6 @@
 package model;
 import java.util.Objects;
 import java.util.Random;
-import java.util.function.ToIntFunction;
 
 public class Employee {
 
@@ -10,7 +9,7 @@ public class Employee {
     private final int department;
     private int salary;
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, double salary, int departmentId) {
         Random random = new Random();
         this.firstName = firstName;
         this.lastName = lastName;
